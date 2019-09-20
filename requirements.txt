@@ -1,0 +1,7 @@
+Flask==0.11.1
+gunicorn==19.7.1
+prometheus-client
+ibmcloudenv
+livereload
+ibm-cos-sdk
+watson-machine-learning-client
