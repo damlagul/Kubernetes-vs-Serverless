@@ -1,0 +1,16 @@
+{
+  "name": "nlu_consumer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nlu_consumer.js",
+  "scripts": {
+    "start": "node nlu_consumer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.5.5",
+    "ibm-watson": "^4.4.0"
+  }
+}
