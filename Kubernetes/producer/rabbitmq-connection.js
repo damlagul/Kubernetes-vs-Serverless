@@ -1,7 +1,7 @@
 var amqp = require("amqplib/callback_api");
 
 function RabbitMQProducer(textMessage,channelNum) {
-  amqp.connect(`amqp://${process.env.RABBITMQ_CONNECTION || 'localhost:5672'}`, function (error0, connection) {
+  amqp.connect(`amqp://<Your RABBITMQ_CONNECTION env>|| 'localhost:5672'}`, function (error0, connection) {
     if (error0) {
       throw error0;
     }
