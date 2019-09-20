@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: name
+spec:
+  selector:
+    key: value
+  type:  
+  ports:
+  - name:  
+    port:  
+    targetPort: 

@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name:
+  labels:
+    key: value
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        key: value
+    spec:
+      containers:
+      - image:
+        name:
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+        env:
+        - name:
+          value:
+        - name:
+          valueFrom:
+            secretKeyRef:
+              key:
+              name:
+        ports:
+        - containerPort:
+          name:
