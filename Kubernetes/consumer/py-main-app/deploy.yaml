@@ -16,7 +16,7 @@ spec:
         app:  py-main-app
     spec:
       containers:
-      - image:  dmlgl/py-main-app:2
+      - image:  dmlgl/py-main-app
         name:  py-main-app
         resources:
           requests:
