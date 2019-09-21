@@ -30,6 +30,8 @@ def metricAnalysis(result):
 def hello():
     if request.method == 'GET':
         emotion = request.args.get('emotion') #if key doesn't exist, returns None
+        if emotion == None:
+            return 'Hello!'
         metricAnalysis(emotion)
         return emotion
     else:
