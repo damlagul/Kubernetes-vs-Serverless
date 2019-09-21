@@ -16,7 +16,7 @@ spec:
         app:  lang-consumer
     spec:
       containers:
-      - image:  grybydr/lang-consumer:0.11
+      - image:  dmlgl/lang-consumer:
         name:  lang-consumer
         resources:
           requests:
