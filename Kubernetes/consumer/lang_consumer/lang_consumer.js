@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const translator_credentials = {
-  "apikey": `<Your WATSONLANG_APIKEY env>`,
-  "url": `<Your WATSONLANG_URL env>`
+  "apikey": `${process.env.WATSONLANG_APIKEY}`,
+  "url": `${process.env.WATSONLANG_URL}`
 };
 
 const LanguageTranslatorV3 = require('ibm-watson/language-translator/v3');
@@ -59,7 +59,7 @@ async function translateLanguage(textToTranslate, language) {
 
 var amqp = require('amqplib/callback_api');
 
-amqp.connect(`amqp://<Your RABBITMQ_CONNECTION env> || 'localhost:5672'}`, function (error0, connection) {
+amqp.connect(`amqp://${process.env.RABBITMQ_CONNECTION || 'localhost:5672'}`, function (error0, connection) {
   if (error0) {
     throw error0;
   }
