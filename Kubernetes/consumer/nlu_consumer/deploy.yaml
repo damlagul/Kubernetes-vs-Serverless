@@ -16,7 +16,7 @@ spec:
         app:  nlu-consumer
     spec:
       containers:
-      - image:  grybydr/nlu-consumer:0.8
+      - image:  dmlgl/nlu-consumer
         name:  nlu-consumer
         resources:
           requests:
