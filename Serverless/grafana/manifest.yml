@@ -1,0 +1,6 @@
+applications:
+- name: grafana
+  buildpack: binary_buildpack
+  memory: 128m
+  command: './bin/grafana-server web'
+  random-route: true
