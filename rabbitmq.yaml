@@ -1,0 +1,28 @@
+# To install:
+# helm init
+#kubectl create serviceaccount --namespace kube-system tiller
+# kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+# kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
+# helm install stable/rabbitmq-ha --name my-rabbit --namespace rabbit -f rabbit-values.yaml
+# docker run --name ibmcloud-cli -d -t -v /var/run/docker.sock:/var/run/docker.sock \
+#  -v /Users/damla/Documents/IBM/Projects/Prom_Grafana/DevNot-master/github-devnot/DevNot:/root/app \
+#  volaka/ubuntu-with-ibmcloud-devtools:latest bash
+
+
+# helm init
+# helm repo update
+# helm install stable/prometheus --name my-prometheus --namespace prometheus
+# kubectl get all -n prometheus
+# export POD_NAME=$(kubectl get pods --namespace prometheus -l "app=prometheus,component=pushgateway" -o jsonpath="{.items[0].metadata.name}")
+# kubectl --namespace prometheus port-forward $POD_NAME 9090 
+# |__output__: Forwarding from 127.0.0.1:9090 -> 9090
+
+### https://github.com/fnproject/fn-helm/issues/21
+
+replicas: 3
+
+service:
+  type: NodePort
+
+rabbitmqUsername: guest
+rabbitmqPassword: guest
