@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: lang-consumer
+  labels:
+    app: lang-consumer
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  lang-consumer
+    spec:
+      containers:
+      - image:  grybydr/lang-consumer:0.11
+        name:  lang-consumer
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+        env:
+        - name:  PORT
+          value:  '80'
+        - name: RABBITMQ_CONNECTION
+          valueFrom:
+            secretKeyRef:
+              key: url
+              name: rabbitmq-connection
+        - name: WATSONLANG_APIKEY
+          valueFrom:
+            secretKeyRef:
+              key: apikey
+              name: watsonlang-credentials
+        - name: WATSONLANG_URL
+          valueFrom:
+            secretKeyRef:
+              key: url
+              name: watsonlang-credentials
+        ports:
+        - containerPort: 80
+          name:  http
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: lang-consumer
+spec:
+  selector:
+    app: lang-consumer
+  type:  NodePort
+  ports:
+  - name:  http
+    port:  80
+    targetPort: 80

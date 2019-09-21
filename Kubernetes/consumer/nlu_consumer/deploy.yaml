@@ -1,0 +1,61 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nlu-consumer
+  labels:
+    app: nlu-consumer
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  nlu-consumer
+    spec:
+      containers:
+      - image:  grybydr/nlu-consumer:0.8
+        name:  nlu-consumer
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+        env:
+        - name:  PORT
+          value:  '80'
+        - name: RABBITMQ_CONNECTION
+          valueFrom:
+            secretKeyRef:
+              key: url
+              name: rabbitmq-connection
+        - name: WATSON_NLU_APIKEY
+          valueFrom:
+            secretKeyRef:
+              key: apikey
+              name: watson-nlu-credentials
+        - name: WATSON_NLU_URL
+          valueFrom:
+            secretKeyRef:
+              key: url
+              name: watson-nlu-credentials
+        ports:
+        - containerPort: 80
+          name:  http
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nlu-consumer
+spec:
+  selector:
+    app: nlu-consumer
+  type:  NodePort
+  ports:
+  - name:  http
+    port:  80
+    targetPort: 80
