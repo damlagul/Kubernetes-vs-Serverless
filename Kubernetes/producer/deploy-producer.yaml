@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: producer
+  labels:
+    app: producer
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata: 
+      labels:
+        app: producer
+    spec:
+      containers:
+      - image: dmlgl/producer
+        name: producer
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"
+        env:
+        - name: PORT
+          value: '80'
+        - name: RABBITMQ_CONNECTION
+          valueFrom:
+            secretKeyRef:
+              key: url
+              name: rabbitmq-connection
+        ports:
+        - containerPort: 80
+          name: http
