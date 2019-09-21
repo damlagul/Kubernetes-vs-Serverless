@@ -2,8 +2,8 @@ const amqp = require('amqplib/callback_api');
 const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
 
 const nlu_credentials = {
-  "apikey": `<Your WATSON_NLU_APIKEY env>`,
-  "url": `<Your WATSON_NLU_URL env>`
+  "apikey": `${process.env.WATSON_NLU_APIKEY}`,
+  "url": `${process.env.WATSON_NLU_URL}`
 };
 
 async function analyzeText(textToAnalyze) {
@@ -43,7 +43,7 @@ async function analyzeText(textToAnalyze) {
   }
 }
 
-amqp.connect(`amqp://<Your RABBITMQ_CONNECTION env>  || 'localhost:5672'}`, function (error0, connection) {
+amqp.connect(`amqp://${process.env.RABBITMQ_CONNECTION || 'localhost:5672'}`, function (error0, connection) {
   if (error0) {
     throw error0;
   }
