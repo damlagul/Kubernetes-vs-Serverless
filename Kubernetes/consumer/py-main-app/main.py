@@ -54,7 +54,7 @@ def metricAnalysis(result):
 
 def queue_reading():
     # Queue connection
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=<Your RABBITMQ_CONNECTION env>, port='5672'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=os.environ["RABBITMQ_CONNECTION"], port='5672'))
     channel = connection.channel()
 
     channel.queue_declare(queue='prom_queue', durable=True)
