@@ -26,4 +26,12 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
+      - targets: ['localhost:8080']
+        # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prom-writer'
+
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+
+    static_configs:
       - targets: ['prom-writer-bold-bonobo.eu-gb.mybluemix.net'] ###### Only changed this line
