@@ -1,0 +1,4 @@
+---
+applications:
+- name: prom-writer
+  random-route: true

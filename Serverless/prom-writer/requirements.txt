@@ -1,0 +1,5 @@
+prometheus_client
+flask
+flask_prometheus
+werkzeug
+flask_prometheus_metrics
