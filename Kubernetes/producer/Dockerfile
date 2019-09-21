@@ -1,5 +1,5 @@
 FROM node:carbon-alpine
-CMD ['npm','start']
+CMD [ "npm", "start"]
 WORKDIR /app
 EXPOSE 80
 COPY package*.json ./
